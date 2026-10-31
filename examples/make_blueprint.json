@@ -1,0 +1,52 @@
+{
+  "name": "Example scenario (synthetic)",
+  "flow": [
+    {
+      "id": 1,
+      "module": "openai-gpt-3:CreateCompletion",
+      "version": 1,
+      "mapper": {
+        "model": "gpt-4-turbo",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Summarise this ticket. Mentioning gpt-3.5-turbo here is just text."
+          }
+        ],
+        "max_tokens": "300"
+      },
+      "metadata": {
+        "designer": {
+          "name": "Summarise ticket"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "builtin:BasicRouter",
+      "version": 1,
+      "routes": [
+        {
+          "flow": [
+            {
+              "id": 3,
+              "module": "slack:CreateMessage",
+              "version": 4,
+              "mapper": {
+                "text": "{{1.result}}"
+              },
+              "metadata": {
+                "designer": {
+                  "name": "Post to Slack"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "version": 1
+  }
+}
