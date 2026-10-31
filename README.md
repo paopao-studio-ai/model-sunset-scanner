@@ -17,7 +17,7 @@ Offline, read-only: the scanner makes no network calls and never modifies your f
 Python 3.9+ and PyYAML.
 
 ```bash
-git clone {{REPO_URL}} model-sunset-scanner
+git clone https://github.com/paopao-studio-ai/model-sunset-scanner model-sunset-scanner
 cd model-sunset-scanner
 pip install -r requirements.txt
 ```
